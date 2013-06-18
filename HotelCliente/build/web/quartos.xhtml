@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition template="/template/app_template_sem_autenticacao.xhtml">
+        <ui:define name="corpo">
+            <h:form>
+               <p:panelGrid columns="2">
+                   <p:calendar style="width: 200px;" value="#{quarto.date}" id="popup" />
+                    <p:commandButton value="Buscar" action="#" />
+                </p:panelGrid>
+                <p:dataTable var="q" value="#{quarto.quartos}">
+                    <p:column headerText="Quartos">  
+                        #{q.descricao}
+                    </p:column> 
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+    
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/app_template_sem_autenticacao.xhtml">
+        <ui:define name="corpo">
+            <p:fieldset legend="Cadastro">
+                <h:panelGrid columns="1" style="margin: auto;" >
+                    <h:outputText value="Nome" />
+                    <p:inputText id="cliente_name" ></p:inputText>
+
+                    <h:outputText value="Sobre Nome" />
+                    <p:inputText ></p:inputText>
+
+                    <h:outputText value="Telefone" />
+                    <p:inputText ></p:inputText>
+
+                    <h:outputText value="Repita a senha" />
+                    <p:password  ></p:password>
+                    <h:outputText value="Senha" />
+                    <p:password  ></p:password>
+                </h:panelGrid>
+                <h:panelGrid columns="2" style="margin: auto;" >
+                    <p:commandButton value="Cadastror"/>
+                    <p:commandButton type="reset" value="Limpar"/>
+                </h:panelGrid>
+            </p:fieldset>
+        </ui:define>
+    </ui:composition>
+</html>

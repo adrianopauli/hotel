@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="pt_BR"/>
+        <title>. : HOTEL Ching Lang : .</title>
+        <h:outputStylesheet library="css" name="estilos.css" />
+         <h:outputScript name="calendarBr.js" library="javaScript" />  
+    </h:head>
+    <h:body>
+        <div id="container_banner">
+            <p:panel><ui:include src="/template/include/banner.xhtml"/></p:panel>
+        </div>
+        <p:fieldset rendered="#{login.login}">
+            <ui:include src="/template/include/menu.xhtml"/>
+
+            <div id="container_corpo">
+                <ui:insert name="corpo" />
+            </div> 
+        </p:fieldset>
+        <h:panelGroup rendered="#{!login.login}">
+            <ui:include src="/template/include/menu_sem_autenticacao.xhtml"/>
+            <div id="container_corpo">
+                <h:form>
+                    <h:panelGrid columns="2" style="margin: auto;">
+                        <p:fieldset legend="Autenticação">
+                            <h:panelGrid columns="1">
+                                <h:outputText value="Usuário" />
+                                <p:inputText ></p:inputText>
+                                <h:outputText value="Senha" />
+                                <p:password  ></p:password>
+                                <p:commandButton value="Iniciar"  />
+                                <p:commandLink action="home.cadastro">Realize seu cadastro</p:commandLink>
+                            </h:panelGrid>
+                        </p:fieldset>
+                    </h:panelGrid>
+                </h:form>
+            </div> 
+        </h:panelGroup>
+        <div id="container_rodape">
+            <p:panel><ui:include src="/template/include/rodape.xhtml"/></p:panel>
+        </div>
+    </h:body>
+</html>

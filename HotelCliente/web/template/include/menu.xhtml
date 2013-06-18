@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition id="menu">
+        <h:form>
+            <p:menubar autoDisplay="false" >
+                <p:menuitem value="Inicio" action="home.inicio" ajax="false"/>
+                <p:menuitem value="Quartos" action="quarto.listar" ajax="false"/>   
+                <p:menuitem value="Meus Agendamentos" action="agendamento.user" ajax="false"/>
+                <p:menuitem value="Deslogar" action="login.close" ajax="false"/>          
+            </p:menubar>
+        </h:form> 
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+body{
+    width: 1000px;
+    margin: auto;
+    font-size: 25px;
+    background-color: #009999;
+}
+#container_banner{
+    margin-bottom:15px;
+}
+#container_corpo{
+    width: 950px;
+    background-color: #ddd;
+    padding: 25px;
+}
+#container_rodape{
+    font-size: 12px;
+    text-align: center;
+    margin-top:15px;
+}
+.rodape_conteudo{font-size: 12px;}
+.ui-menuitem-link{
+     font-size: 25px;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 20px;
+}
+.ui-inputfield.ui-widget{
+    font-size:40px;width: 685px;padding-top: 15px;
+}
+.ui-button.ui-widget{
+    font-size:40px;
+}
