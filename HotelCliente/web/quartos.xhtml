@@ -2,17 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <ui:composition template="/template/app_template_sem_autenticacao.xhtml">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/app_template.xhtml">
         <ui:define name="corpo">
             <h:form>
+               <p:growl id="growl" showDetail="true" sticky="true" /> 
                <p:panelGrid columns="2">
                    <p:calendar style="width: 200px;" value="#{quarto.date}" id="popup" />
                     <p:commandButton value="Buscar" action="#" />
                 </p:panelGrid>
                 <p:dataTable var="q" value="#{quarto.quartos}">
                     <p:column headerText="Quartos">  
-                        #{q.descricao}
+                        <h:commandLink action="#{reservar.novo}" >
+                            #{q.descricao}
+                            <f:setPropertyActionListener target="#{reservar.quarto}" value="#{q}" />
+                            <f:setPropertyActionListener target="#{reservar.cliente}" value="#{login.cliente}" />
+                            <f:setPropertyActionListener target="#{reservar.date}" value="#{quarto.date}" />
+                         </h:commandLink>
                     </p:column> 
                 </p:dataTable>
             </h:form>

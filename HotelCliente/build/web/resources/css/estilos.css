@@ -26,8 +26,8 @@ body{
     font-size: 20px;
 }
 .ui-inputfield.ui-widget{
-    font-size:40px;width: 685px;padding-top: 15px;
+    font-size:20px;width: 500px;padding-top: 10px;
 }
 .ui-button.ui-widget{
-    font-size:40px;
+    font-size:20px;
 }

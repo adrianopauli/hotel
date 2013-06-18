@@ -25,15 +25,16 @@
             <ui:include src="/template/include/menu_sem_autenticacao.xhtml"/>
             <div id="container_corpo">
                 <h:form>
+                    <p:growl id="growl" showDetail="true" sticky="true" /> 
                     <h:panelGrid columns="2" style="margin: auto;">
                         <p:fieldset legend="Autenticação">
                             <h:panelGrid columns="1">
                                 <h:outputText value="Usuário" />
-                                <p:inputText ></p:inputText>
+                                <p:inputText value="#{login.cliente.login}" />
                                 <h:outputText value="Senha" />
-                                <p:password  ></p:password>
-                                <p:commandButton value="Iniciar"  />
-                                <p:commandLink action="home.cadastro">Realize seu cadastro</p:commandLink>
+                                <p:password  value="#{login.cliente.senha}" />
+                                <p:commandButton value="Iniciar" update="growl" action="#{login.logIn}" ajax="false" />
+                                <p:commandLink action="home.cadastro" ajax="false">Realize seu cadastro</p:commandLink>
                             </h:panelGrid>
                         </p:fieldset>
                     </h:panelGrid>
