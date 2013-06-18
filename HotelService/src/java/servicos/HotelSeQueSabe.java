@@ -33,6 +33,7 @@ public class HotelSeQueSabe {
     @Oneway
     public void cadastroCliente(@WebParam(name = "cliente") Cliente cliente) {
         RepClientes.getInstance().adicionaCliente(cliente);
+        System.out.println("Cadastro = "+cliente.getNome());
     }
 
     /**
