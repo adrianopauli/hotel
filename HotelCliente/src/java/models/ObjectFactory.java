@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _Cancelar_QNAME = new QName("http://servicos/", "cancelar");
     private final static QName _Login_QNAME = new QName("http://servicos/", "login");
     private final static QName _ConsultaQuartosDisponiveisResponse_QNAME = new QName("http://servicos/", "consultaQuartosDisponiveisResponse");
     private final static QName _MinhasReservasResponse_QNAME = new QName("http://servicos/", "minhasReservasResponse");
@@ -33,6 +34,7 @@ public class ObjectFactory {
     private final static QName _CadastrarReserva_QNAME = new QName("http://servicos/", "cadastrarReserva");
     private final static QName _ConsultaQuartosDisponiveis_QNAME = new QName("http://servicos/", "consultaQuartosDisponiveis");
     private final static QName _LoginResponse_QNAME = new QName("http://servicos/", "loginResponse");
+    private final static QName _CancelarResponse_QNAME = new QName("http://servicos/", "cancelarResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: models
@@ -79,6 +81,22 @@ public class ObjectFactory {
      */
     public CadastrarReserva createCadastrarReserva() {
         return new CadastrarReserva();
+    }
+
+    /**
+     * Create an instance of {@link CancelarResponse }
+     * 
+     */
+    public CancelarResponse createCancelarResponse() {
+        return new CancelarResponse();
+    }
+
+    /**
+     * Create an instance of {@link Cancelar }
+     * 
+     */
+    public Cancelar createCancelar() {
+        return new Cancelar();
     }
 
     /**
@@ -135,6 +153,15 @@ public class ObjectFactory {
      */
     public Reserva createReserva() {
         return new Reserva();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Cancelar }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://servicos/", name = "cancelar")
+    public JAXBElement<Cancelar> createCancelar(Cancelar value) {
+        return new JAXBElement<Cancelar>(_Cancelar_QNAME, Cancelar.class, null, value);
     }
 
     /**
@@ -216,6 +243,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servicos/", name = "loginResponse")
     public JAXBElement<LoginResponse> createLoginResponse(LoginResponse value) {
         return new JAXBElement<LoginResponse>(_LoginResponse_QNAME, LoginResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CancelarResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://servicos/", name = "cancelarResponse")
+    public JAXBElement<CancelarResponse> createCancelarResponse(CancelarResponse value) {
+        return new JAXBElement<CancelarResponse>(_CancelarResponse_QNAME, CancelarResponse.class, null, value);
     }
 
 }

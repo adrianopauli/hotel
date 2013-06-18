@@ -1,10 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template/app_template.xhtml">
         <ui:define name="corpo">
             <h:form>
-                
+                <f:setPropertyActionListener target="#{myReservas.cliente}" value="#{login.cliente}" />
+                <p:dataTable var="reserva" value="#{myReservas.revercas}">
+                    <h:commandLink action="#{reservar.cancelar}" >
+                        #{reserva.data.month}
+                        <f:setPropertyActionListener target="#{reserva.quarto}" value="#{reserva.quarto}" />
+                    </h:commandLink>
+                </p:dataTable>
             </h:form>
         </ui:define>
     </ui:composition>

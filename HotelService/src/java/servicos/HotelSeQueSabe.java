@@ -103,4 +103,19 @@ public class HotelSeQueSabe {
         }
         return null;
     }
+
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "cancelar")
+    public Boolean cancelar(@WebParam(name = "cliente") Cliente cliente,@WebParam(name = "quarto") Quarto quarto) {
+        List<Reserva> reservas = RepReservas.getInstance().getReservas();
+        for (Reserva reserva : reservas) {
+            if(reserva.getCliente().equals(cliente) && reserva.getQuarto().equals(quarto)){
+                reservas.remove(reserva);
+                return true;
+            }
+        }
+        return false;
+    }
 }

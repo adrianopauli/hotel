@@ -4,10 +4,12 @@
  */
 package controllers.rf;
 
-import com.sun.security.ntlm.Client;
+import controllers.web.ServidorHotel;
 import java.util.Date;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import models.Cliente;
 import models.Quarto;
 /**
@@ -52,9 +54,26 @@ public class Reservar {
     }
     
     public String agendar(){
+        boolean c = ServidorHotel.getInstance().getHotel().cadastrarReserva(cliente, date.getTime(), quarto);
+        if (c) {
+            return "myreservas";
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Reserva negada!", "A data está indesponível"));
+        }
         return "";
     }
     
+    public String cancelar(){
+        boolean c = ServidorHotel.getInstance().getHotel().cancelar(cliente, quarto);
+        if (c) {
+            return "";
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Reserva negada!", "A data está indesponível"));
+        }
+        return "";
+    }
     public String novo(){
         return "agendamento.novo";
     }
