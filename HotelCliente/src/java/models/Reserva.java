@@ -1,6 +1,8 @@
 
 package models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -114,4 +116,9 @@ public class Reserva {
         this.quarto = value;
     }
 
+        public String getDateFormat() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMMMMMMMMM/yyyy");
+        Date d = data.toGregorianCalendar().getTime();
+        return sdf.format(d);
+    }
 }

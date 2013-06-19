@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/template/app_template.xhtml">
         <ui:define name="corpo">
             <h:form>
@@ -12,9 +13,7 @@
 
 
                 <h:panelGrid columns="2">
-                    <p:commandButton value="Confirmar" action="#{reservar.agendar}" ajax="false">
-
-                    </p:commandButton>
+                    <p:commandButton value="Confirmar" action="#{reservar.agendar}" ajax="false"/>
                     <p:commandButton value="Voltar" action="quarto.listar" ajax="false"/>
                 </h:panelGrid>
 

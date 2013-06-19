@@ -6,11 +6,14 @@ package controllers;
 
 import controllers.web.ServidorHotel;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import models.Cliente;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import models.Reserva;
 
 /**
  *
@@ -64,5 +67,8 @@ public class Login implements Serializable {
         cliente = new Cliente();
         login = false;
         return "";
+    }
+     public List<Reserva> getRevercas(){
+        return new ArrayList<Reserva>(ServidorHotel.getInstance().getHotel().minhasReservas(cliente));
     }
 }

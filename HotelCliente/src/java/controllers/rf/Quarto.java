@@ -21,7 +21,7 @@ public class Quarto{
     }
     
     public List<models.Quarto> getQuartos(){
-       return new ArrayList<models.Quarto>(ServidorHotel.getInstance().getHotel().consultaQuartosDisponiveis(1254));
+       return new ArrayList<models.Quarto>(ServidorHotel.getInstance().getHotel().consultaQuartosDisponiveis(date.getTime()));
     }
 
     public void setDate(Date date) {

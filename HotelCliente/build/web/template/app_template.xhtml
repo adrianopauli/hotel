@@ -14,13 +14,13 @@
         <div id="container_banner">
             <p:panel><ui:include src="/template/include/banner.xhtml"/></p:panel>
         </div>
-        <p:fieldset rendered="#{login.login}">
+        <h:panelGroup rendered="#{login.login}">
             <ui:include src="/template/include/menu.xhtml"/>
 
             <div id="container_corpo">
                 <ui:insert name="corpo" />
             </div> 
-        </p:fieldset>
+        </h:panelGroup>
         <h:panelGroup rendered="#{!login.login}">
             <ui:include src="/template/include/menu_sem_autenticacao.xhtml"/>
             <div id="container_corpo">

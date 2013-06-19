@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="cliente" type="{http://servicos/}cliente" minOccurs="0"/>
- *         &lt;element name="data" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="data" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="quarto" type="{http://servicos/}quarto" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlType;
 public class CadastrarReserva {
 
     protected Cliente cliente;
-    protected Long data;
+    protected long data;
     protected Quarto quarto;
 
     /**
@@ -66,24 +66,16 @@ public class CadastrarReserva {
     /**
      * Gets the value of the data property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
      */
-    public Long getData() {
+    public long getData() {
         return data;
     }
 
     /**
      * Sets the value of the data property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
      */
-    public void setData(Long value) {
+    public void setData(long value) {
         this.data = value;
     }
 

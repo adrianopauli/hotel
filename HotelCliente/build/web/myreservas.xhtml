@@ -6,12 +6,14 @@
     <ui:composition template="/template/app_template.xhtml">
         <ui:define name="corpo">
             <h:form>
-                <f:setPropertyActionListener target="#{myReservas.cliente}" value="#{login.cliente}" />
-                <p:dataTable var="reserva" value="#{myReservas.revercas}">
-                    <h:commandLink action="#{reservar.cancelar}" >
-                        #{reserva.data.month}
-                        <f:setPropertyActionListener target="#{reserva.quarto}" value="#{reserva.quarto}" />
-                    </h:commandLink>
+                <p:dataTable var="reserva" value="#{login.revercas}">
+                    <p:column headerText="Quartos Reservados">
+                        <h:commandLink action="#{reservar.cancelar}" >
+                            <h:outputText value="Quarto: #{reserva.quarto.descricao}"/><br/>
+                            <h:outputText value="Data: #{reserva.dateFormat}"/>
+                            <f:setPropertyActionListener target="#{reservar.reserva}" value="#{reserva}" />
+                        </h:commandLink>
+                    </p:column>
                 </p:dataTable>
             </h:form>
         </ui:define>

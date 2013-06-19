@@ -6,6 +6,8 @@ package servicos;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.jws.Oneway;
@@ -26,14 +28,14 @@ import rep.RepReservas;
 @WebService(serviceName = "HotelSeQueSabe")
 public class HotelSeQueSabe {
 
-     /**
+    /**
      * Operação de Web service
      */
     @WebMethod(operationName = "cadastroCliente")
     @Oneway
     public void cadastroCliente(@WebParam(name = "cliente") Cliente cliente) {
         RepClientes.getInstance().adicionaCliente(cliente);
-        System.out.println("Cadastro = "+cliente.getNome());
+        System.out.println("Cadastro = " + cliente.getNome());
     }
 
     /**
@@ -41,21 +43,18 @@ public class HotelSeQueSabe {
      */
     @WebMethod(operationName = "consultaQuartosDisponiveis")
     public List<Quarto> consultaQuartosDisponiveis(@WebParam(name = "data") long data) {
-        List<Quarto> quartosDisponiveis = RepQuartos.getInstance().getQuartos();
+        List<Quarto> disponivels = new ArrayList<Quarto>(RepQuartos.getInstance().getQuartos());
         Date d = new Date(data);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String format = sdf.format(d);
         for (Reserva reserva : RepReservas.getInstance().getReservas()) {
-            String dataReserva = sdf.format(reserva.getData());            
-            if(dataReserva.equals(format)){
-                Quarto q = reserva.getQuarto();
-                quartosDisponiveis.remove(q);
-            } 
-        }     
-        for (Quarto quarto : quartosDisponiveis) {
-            System.out.println(quarto.getDescricao());
+            String dataReserva = sdf.format(reserva.getData());
+            System.out.println(format+"--+"+dataReserva);
+            if (dataReserva.equals(format)) {
+                disponivels.remove(reserva.getQuarto());
+            }
         }
-        return quartosDisponiveis;
+        return disponivels;
     }
 
     /**
@@ -64,9 +63,9 @@ public class HotelSeQueSabe {
     @WebMethod(operationName = "minhasReservas")
     public List<Reserva> minhasReservas(@WebParam(name = "cliente") Cliente cliente) {
         List<Reserva> reservas = new ArrayList<Reserva>();
-        
+        System.out.println("lista" + RepReservas.getInstance().getReservas());
         for (Reserva reserva : RepReservas.getInstance().getReservas()) {
-            if(reserva.getCliente().getNome().equals(cliente.getNome())){
+            if (cliente.getNome().equals(reserva.getCliente().getNome())) {
                 reservas.add(reserva);
             }
         }
@@ -77,29 +76,27 @@ public class HotelSeQueSabe {
      * Operação de Web service
      */
     @WebMethod(operationName = "cadastrarReserva")
-    public Boolean cadastrarReserva(@WebParam(name = "cliente") Cliente cliente, @WebParam(name = "data") Long data, @WebParam(name = "quarto") Quarto quarto) {
+    public Boolean cadastrarReserva(@WebParam(name = "cliente") Cliente cliente, @WebParam(name = "data") long data, @WebParam(name = "quarto") Quarto quarto) {
         Reserva r = new Reserva();
         r.setCliente(cliente);
         Date d = new Date(data);
         r.setData(d);
         r.setQuarto(quarto);
-        try {
-            RepReservas.getInstance().adicionarReserva(r);
-            System.out.println("RESERVA REALIZADA!");
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        RepReservas.getInstance().adicionarReserva(r);
+        System.out.println("RESERVA REALIZADA!\n"+cliente.getNome()+"quarto = "+quarto.getDescricao()+d);
+        return true;
     }
 
-    /**Realizar a autenticação de um cliente*/
+    /**
+     * Realizar a autenticação de um cliente
+     */
     @WebMethod(operationName = "login")
     public Cliente login(@WebParam(name = "cliente") Cliente c) {
         List<Cliente> clientes = RepClientes.getInstance().getClientes();
         for (Cliente cliente : clientes) {
-            if(cliente.equals(c))
+            if (cliente.equals(c)) {
                 return cliente;
+            }
         }
         return null;
     }
@@ -108,14 +105,16 @@ public class HotelSeQueSabe {
      * Operação de Web service
      */
     @WebMethod(operationName = "cancelar")
-    public Boolean cancelar(@WebParam(name = "cliente") Cliente cliente,@WebParam(name = "quarto") Quarto quarto) {
+    public Boolean cancelar(@WebParam(name = "cliente")Reserva reserva) {
         List<Reserva> reservas = RepReservas.getInstance().getReservas();
-        for (Reserva reserva : reservas) {
-            if(reserva.getCliente().equals(cliente) && reserva.getQuarto().equals(quarto)){
-                reservas.remove(reserva);
+        for (Reserva r : reservas) {
+            if (r.equals(reserva)) {
+                reservas.remove(r);
+                System.out.println("ok");
                 return true;
             }
         }
+        System.out.println("nooo");
         return false;
     }
 }

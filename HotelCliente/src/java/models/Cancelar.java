@@ -16,8 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="cliente" type="{http://servicos/}cliente" minOccurs="0"/>
- *         &lt;element name="quarto" type="{http://servicos/}quarto" minOccurs="0"/>
+ *         &lt;element name="cliente" type="{http://servicos/}reserva" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,23 +27,21 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "cancelar", propOrder = {
-    "cliente",
-    "quarto"
+    "cliente"
 })
 public class Cancelar {
 
-    protected Cliente cliente;
-    protected Quarto quarto;
+    protected Reserva cliente;
 
     /**
      * Gets the value of the cliente property.
      * 
      * @return
      *     possible object is
-     *     {@link Cliente }
+     *     {@link Reserva }
      *     
      */
-    public Cliente getCliente() {
+    public Reserva getCliente() {
         return cliente;
     }
 
@@ -53,35 +50,11 @@ public class Cancelar {
      * 
      * @param value
      *     allowed object is
-     *     {@link Cliente }
+     *     {@link Reserva }
      *     
      */
-    public void setCliente(Cliente value) {
+    public void setCliente(Reserva value) {
         this.cliente = value;
-    }
-
-    /**
-     * Gets the value of the quarto property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Quarto }
-     *     
-     */
-    public Quarto getQuarto() {
-        return quarto;
-    }
-
-    /**
-     * Sets the value of the quarto property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Quarto }
-     *     
-     */
-    public void setQuarto(Quarto value) {
-        this.quarto = value;
     }
 
 }

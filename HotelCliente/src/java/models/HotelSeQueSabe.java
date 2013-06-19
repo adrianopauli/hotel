@@ -30,22 +30,6 @@ public interface HotelSeQueSabe {
      * 
      * @param cliente
      * @return
-     *     returns models.Cliente
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "login", targetNamespace = "http://servicos/", className = "models.Login")
-    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://servicos/", className = "models.LoginResponse")
-    @Action(input = "http://servicos/HotelSeQueSabe/loginRequest", output = "http://servicos/HotelSeQueSabe/loginResponse")
-    public Cliente login(
-        @WebParam(name = "cliente", targetNamespace = "")
-        Cliente cliente);
-
-    /**
-     * 
-     * @param quarto
-     * @param cliente
-     * @return
      *     returns java.lang.Boolean
      */
     @WebMethod
@@ -55,36 +39,7 @@ public interface HotelSeQueSabe {
     @Action(input = "http://servicos/HotelSeQueSabe/cancelarRequest", output = "http://servicos/HotelSeQueSabe/cancelarResponse")
     public Boolean cancelar(
         @WebParam(name = "cliente", targetNamespace = "")
-        Cliente cliente,
-        @WebParam(name = "quarto", targetNamespace = "")
-        Quarto quarto);
-
-    /**
-     * 
-     * @param data
-     * @return
-     *     returns java.util.List<models.Quarto>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "consultaQuartosDisponiveis", targetNamespace = "http://servicos/", className = "models.ConsultaQuartosDisponiveis")
-    @ResponseWrapper(localName = "consultaQuartosDisponiveisResponse", targetNamespace = "http://servicos/", className = "models.ConsultaQuartosDisponiveisResponse")
-    @Action(input = "http://servicos/HotelSeQueSabe/consultaQuartosDisponiveisRequest", output = "http://servicos/HotelSeQueSabe/consultaQuartosDisponiveisResponse")
-    public List<Quarto> consultaQuartosDisponiveis(
-        @WebParam(name = "data", targetNamespace = "")
-        long data);
-
-    /**
-     * 
-     * @param cliente
-     */
-    @WebMethod
-    @Oneway
-    @RequestWrapper(localName = "cadastroCliente", targetNamespace = "http://servicos/", className = "models.CadastroCliente")
-    @Action(input = "http://servicos/HotelSeQueSabe/cadastroCliente")
-    public void cadastroCliente(
-        @WebParam(name = "cliente", targetNamespace = "")
-        Cliente cliente);
+        Reserva cliente);
 
     /**
      * 
@@ -103,6 +58,21 @@ public interface HotelSeQueSabe {
 
     /**
      * 
+     * @param data
+     * @return
+     *     returns java.util.List<models.Quarto>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "consultaQuartosDisponiveis", targetNamespace = "http://servicos/", className = "models.ConsultaQuartosDisponiveis")
+    @ResponseWrapper(localName = "consultaQuartosDisponiveisResponse", targetNamespace = "http://servicos/", className = "models.ConsultaQuartosDisponiveisResponse")
+    @Action(input = "http://servicos/HotelSeQueSabe/consultaQuartosDisponiveisRequest", output = "http://servicos/HotelSeQueSabe/consultaQuartosDisponiveisResponse")
+    public List<Quarto> consultaQuartosDisponiveis(
+        @WebParam(name = "data", targetNamespace = "")
+        long data);
+
+    /**
+     * 
      * @param quarto
      * @param cliente
      * @param data
@@ -118,8 +88,35 @@ public interface HotelSeQueSabe {
         @WebParam(name = "cliente", targetNamespace = "")
         Cliente cliente,
         @WebParam(name = "data", targetNamespace = "")
-        Long data,
+        long data,
         @WebParam(name = "quarto", targetNamespace = "")
         Quarto quarto);
+
+    /**
+     * 
+     * @param cliente
+     */
+    @WebMethod
+    @Oneway
+    @RequestWrapper(localName = "cadastroCliente", targetNamespace = "http://servicos/", className = "models.CadastroCliente")
+    @Action(input = "http://servicos/HotelSeQueSabe/cadastroCliente")
+    public void cadastroCliente(
+        @WebParam(name = "cliente", targetNamespace = "")
+        Cliente cliente);
+
+    /**
+     * 
+     * @param cliente
+     * @return
+     *     returns models.Cliente
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://servicos/", className = "models.Login")
+    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://servicos/", className = "models.LoginResponse")
+    @Action(input = "http://servicos/HotelSeQueSabe/loginRequest", output = "http://servicos/HotelSeQueSabe/loginResponse")
+    public Cliente login(
+        @WebParam(name = "cliente", targetNamespace = "")
+        Cliente cliente);
 
 }
