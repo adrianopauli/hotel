@@ -6,7 +6,7 @@
     <ui:composition template="/template/app_template.xhtml">
         <ui:define name="corpo">
             <h:form>
-                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:growl id="growl" showDetail="true" sticky="false" life="5000"  /> 
                 <h:outputText style="color: #000;" value="Eu #{reservar.cliente.nome} desejo realizar uma reserva para o imóvel #{reservar.quarto.descricao} para o dia " />
                 <p:calendar style="width: 200px;" value="#{reservar.date}" id="popup" />
                 <h:outputText value="#{usuario.cliente.nome}" /><br/>

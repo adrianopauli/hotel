@@ -6,17 +6,11 @@ package controllers.rf;
 
 import controllers.web.ServidorHotel;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.faces.event.ActionEvent;
 import models.Cliente;
 import models.Quarto;
 import models.Reserva;
@@ -28,6 +22,7 @@ import models.Reserva;
 @ManagedBean
 @SessionScoped
 public class Reservar {
+
     private Reserva reserva;
     private Cliente cliente;
     private models.Quarto quarto;
@@ -72,33 +67,35 @@ public class Reservar {
     }
 
     public String agendar() {
-        System.out.println("be" + date);
-        boolean c = ServidorHotel.getInstance().getHotel().cadastrarReserva(cliente, date.getTime(), quarto);
-        if (c) {
-            quarto = new models.Quarto();
-            date = new Date();
-            return "myreservas";
-        } else {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Reserva negada!", "A data está indesponível"));
+        if (quarto != null) {
+            boolean c = ServidorHotel.getInstance().getHotel().cadastrarReserva(cliente, date.getTime(), quarto);
+            if (c) {
+                quarto = new models.Quarto();
+                date = new Date();
+                reserva = new Reserva();
+                return "myreservas";
+            } else {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Reserva negada!", "A data está indesponível"));
+            }
         }
-
-
         return "";
     }
 
-    public String cancelar() {
+    public void cancelar(ActionEvent actionEvent) {
+        FacesMessage message;
+
         boolean c = ServidorHotel.getInstance().getHotel().cancelar(reserva);
         if (c) {
             cliente = new Cliente();
             quarto = new models.Quarto();
             date = new Date();
-            return "";
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Agendamento removido", "");
         } else {
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Reserva negada!", "A data está indesponível"));
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "");
         }
-        return "";
+
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public String novo() {

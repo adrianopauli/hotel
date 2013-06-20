@@ -6,15 +6,24 @@
     <ui:composition template="/template/app_template.xhtml">
         <ui:define name="corpo">
             <h:form>
-                <p:dataTable var="reserva" value="#{login.revercas}">
+                <p:growl id="growl" showDetail="true" sticky="false" life="5000" /> 
+                <p:dataTable id="dataTable" var="reserva" value="#{login.revercas}" emptyMessage="#{login.cliente.nome} você não possui agendamentos">
                     <p:column headerText="Quartos Reservados">
-                        <h:commandLink action="#{reservar.cancelar}" >
+                        <p:commandLink id="showDialogButton" onclick="confirmation.show()" type="button">
                             <h:outputText value="Quarto: #{reserva.quarto.descricao}"/><br/>
                             <h:outputText value="Data: #{reserva.dateFormat}"/>
                             <f:setPropertyActionListener target="#{reservar.reserva}" value="#{reserva}" />
-                        </h:commandLink>
+                        </p:commandLink>
                     </p:column>
                 </p:dataTable>
+                <p:confirmDialog id="confirmDialog" message="Data:#{reserva.dateFormat} - Imovel: #{reserva.quarto.descricao}" 
+                                 header="Remover Agendamento" severity="alert" widgetVar="confirmation">  
+
+                    <p:commandButton id="confirm" value="Sim" oncomplete="confirmation.hide()" update="growl,dataTable" 
+                                     actionListener="#{reservar.cancelar}"/>  
+                    <p:commandButton id="decline" value="Não" onclick="confirmation.hide()" type="button" />   
+
+                </p:confirmDialog> 
             </h:form>
         </ui:define>
     </ui:composition>

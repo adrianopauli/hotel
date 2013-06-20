@@ -7,12 +7,12 @@
     <ui:composition template="/template/app_template.xhtml">
         <ui:define name="corpo">
             <h:form>
-               <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <p:growl id="growl" showDetail="true" sticky="false" life="5000"/> 
                <p:panelGrid columns="2">
                    <p:calendar style="width: 200px;" value="#{quarto.date}" id="popup" />
-                   <p:commandButton value="Buscar" ajax="false" />
+                   <p:commandButton value="Buscar" update="dataTable" />
                 </p:panelGrid>
-                <p:dataTable var="q" value="#{quarto.quartos}">
+                <p:dataTable id="dataTable" var="q" value="#{quarto.quartos}">
                     <p:column headerText="Quartos">  
                         <h:commandLink action="#{reservar.novo}" >
                             <h:outputText class="comand_link" value="Imovel: #{q.descricao}"/>

@@ -17,7 +17,7 @@
         <h:panelGroup rendered="#{login.login}">
             <ui:include src="/template/include/menu.xhtml"/>
 
-            <div id="container_corpo">
+            <div id="container_corpo">               
                 <ui:insert name="corpo" />
             </div> 
         </h:panelGroup>
@@ -25,7 +25,7 @@
             <ui:include src="/template/include/menu_sem_autenticacao.xhtml"/>
             <div id="container_corpo">
                 <h:form>
-                    <p:growl id="growl" showDetail="true" sticky="true" /> 
+                    <p:growl id="growl" showDetail="true" sticky="false" life="5000"  />  
                     <h:panelGrid columns="2" style="margin: auto;">
                         <p:fieldset legend="Autenticação">
                             <h:panelGrid columns="1">
