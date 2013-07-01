@@ -12,9 +12,9 @@
                    <p:calendar style="width: 200px;" value="#{quarto.date}" id="popup" />
                    <p:commandButton value="Buscar" update="dataTable" />
                 </p:panelGrid>
-                <p:dataTable id="dataTable" var="q" value="#{quarto.quartos}">
+                <p:dataTable id="dataTable" var="q" value="#{quarto.quartos}"  emptyMessage="Não há quartos disponiveis para essa data">
                     <p:column headerText="Quartos">  
-                        <h:commandLink action="#{reservar.novo}" >
+                        <h:commandLink action="#{reservar.novo}"  >
                             <h:outputText class="comand_link" value="Aposento: #{q.descricao}"/>
                             <f:setPropertyActionListener target="#{reservar.quarto}" value="#{q}" />
                             <f:setPropertyActionListener target="#{reservar.cliente}" value="#{login.cliente}" />
