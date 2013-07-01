@@ -63,7 +63,7 @@ public class Usuario {
         if (validate) {
             try {
                 ServidorHotel.getInstance().getHotel().cadastroCliente(cliente);
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cadastrado com Sucesso", ""));
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastrado com Sucesso", ""));
                 return "home.inicio";
             } catch (Exception e) {
             }

@@ -6,8 +6,6 @@ package servicos;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.jws.Oneway;
@@ -23,13 +21,13 @@ import rep.RepReservas;
 
 /**
  *
- * @author Adriano
+ * @author Lucas
  */
 @WebService(serviceName = "HotelSeQueSabe")
 public class HotelSeQueSabe {
 
     /**
-     * Operação de Web service
+     * Operação de Web service para cadastrar um cliente
      */
     @WebMethod(operationName = "cadastroCliente")
     @Oneway
@@ -39,7 +37,7 @@ public class HotelSeQueSabe {
     }
 
     /**
-     * Operação de Web service
+     * Operação de Web service que retorna os quartos disponiveis para uma data passado
      */
     @WebMethod(operationName = "consultaQuartosDisponiveis")
     public List<Quarto> consultaQuartosDisponiveis(@WebParam(name = "data") long data) {
@@ -58,7 +56,7 @@ public class HotelSeQueSabe {
     }
 
     /**
-     * Operação de Web service
+     * Operação de Web service que retorna as reservas por cliente
      */
     @WebMethod(operationName = "minhasReservas")
     public List<Reserva> minhasReservas(@WebParam(name = "cliente") Cliente cliente) {
@@ -73,7 +71,7 @@ public class HotelSeQueSabe {
     }
 
     /**
-     * Operação de Web service
+     * Operação de Web service para cadastrar uma reserva
      */
     @WebMethod(operationName = "cadastrarReserva")
     public Boolean cadastrarReserva(@WebParam(name = "cliente") Cliente cliente, @WebParam(name = "data") long data, @WebParam(name = "quarto") Quarto quarto) {
@@ -102,7 +100,7 @@ public class HotelSeQueSabe {
     }
 
     /**
-     * Operação de Web service
+     * Operação de Web service para cancelar uma reserva
      */
     @WebMethod(operationName = "cancelar")
     public Boolean cancelar(@WebParam(name = "cliente")Reserva reserva) {
@@ -110,11 +108,9 @@ public class HotelSeQueSabe {
         for (Reserva r : reservas) {
             if (r.equals(reserva)) {
                 reservas.remove(r);
-                System.out.println("ok");
                 return true;
             }
         }
-        System.out.println("nooo");
         return false;
     }
 }
